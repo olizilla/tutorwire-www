@@ -1,9 +1,34 @@
 ---
-title: Learn...
+title: Learn
 bodyClass: learn
 ---
 {{> nav }}
+{{> map-leaflet }}
 
-<h1>{{ title }}</h1>
+<div class="overlay">
+	<h1>Learn </h1>
+	<input id="subject" type="text" class="input-large" name="subject" id="subject" autocomplete="off" data-provide="typeahead" data-source='{{> subjects }}'>
+	<h1>Near</h1>
+	<input id="place" type="text" class="input-large" name="subject" id="subject" autocomplete="off" placeholder="UK">	
+</div>
 
-<p> wot </p>
+<script src="{{assets}}/js/uk-cities.js"></script>
+<script>
+var place = $('#place');
+
+place.typeahead({ source: app.uk.getCityNames });
+
+var placeMarker;
+
+place.on('change', function(evt){
+	var cityName = $(this).val();
+	var cityData = app.uk.cities[cityName];
+	console.log("Selected:", cityName, cityData);
+	if (placeMarker){
+		map.removeLayer(placeMarker);
+	}
+	placeMarker = L.marker(cityData)
+	placeMarker.addTo(map);
+	map.setView(cityData, 8);
+});
+</script>
