@@ -7,7 +7,7 @@ bodyClass: join
 
 <p>Start creating your tutoring profile</p>
 
-<form method="post" class="form-horizontal">
+<form method="post" class="form-horizontal" action="http://localhost:9000/tutor">
 	<div class="control-group">
 		<label class="control-label" for="email">Email</label>
 		<input type="email" name="email" id="email">
@@ -20,6 +20,12 @@ bodyClass: join
 		<label class="control-label" for="subject">Teaching</label>
 		<input type="text" name="subject" id="subject" autocomplete="off" data-provide="typeahead" data-source='{{> subjects }}'>
 	</div>
-	<button type="submit" class="btn">Create profile</button>
+	<button type="submit" class="btn" id="addTutor">Create profile</button>
 </form>
 
+
+<script>
+$(document).ready(function(){
+	console.log('we on')
+});
+</script>
