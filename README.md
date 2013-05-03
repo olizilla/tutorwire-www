@@ -9,3 +9,9 @@ Uses:
 - [Bower] - Defining the front end, 3rd party, js lib dependencies in bower.json
 - [Grunt] - The task runner that brings it all together with a `grunt`
 
+
+
+[Handlebars]: http://handlebarsjs.com/
+[Assemble]: https://github.com/assemble/assemble
+[Bower]: http://bower.io/
+[Grunt]: http://gruntjs.com/

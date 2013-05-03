@@ -1,0 +1,25 @@
+---
+title: Join up
+bodyClass: join
+---
+{{> nav }}
+<h1>{{ title }}</h1>
+
+<p>Start creating your tutoring profile</p>
+
+<form method="post" class="form-horizontal">
+	<div class="control-group">
+		<label class="control-label" for="email">Email</label>
+		<input type="email" name="email" id="email">
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="name">Name</label>
+		<input type="text" name="name" id="name">
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="subject">Teaching</label>
+		<input type="text" name="subject" id="subject" autocomplete="off" data-provide="typeahead" data-source='{{> subjects }}'>
+	</div>
+	<button type="submit" class="btn">Create profile</button>
+</form>
+

@@ -6,9 +6,10 @@ module.exports = function(grunt) {
 		// Creat the html files from page layouts and partial html fragments
 		assemble:{
 			options: {
-				assets: 'dist/',
+				assets: '/',
 				layout:'html/layout.h5bp.hbs',
-				partials: 'html/partials/*.hbs'
+				partials: 'html/partials/*.hbs',
+				data: 'html/data/*.json'
 			},
 			pages: {
 				files:[{
@@ -26,11 +27,30 @@ module.exports = function(grunt) {
 			dev: {
 				dest: '_dist/js/vendor/'
 			}
+		},
+
+		copy:{
+			main:{
+				files:[{
+						expand:true,
+						src: ['{js,css}/*'],
+						dest: '_dist/',
+						ext: ''
+					}]
+				}
+		},
+
+		watch:{
+			files: ['html/*', 'html/**/*', 'css/*', 'js/*', 'Gruntfile.js'],
+			tasks:['default']
 		}
+
 	});
 
 	grunt.loadNpmTasks('assemble');
 	grunt.loadNpmTasks('grunt-bower');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
-	grunt.registerTask('default', ['assemble', 'bower']);
+	grunt.registerTask('default', ['assemble', 'copy', 'bower']);
 };
