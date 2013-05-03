@@ -1,0 +1,12 @@
+{
+  "name": "tutorwire-www",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+  	"jquery": "1.9.1"
+  }
+}

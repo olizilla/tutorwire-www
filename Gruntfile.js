@@ -1,63 +1,36 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
-  grunt.initConfig({
-    
-    pkg: grunt.file.readJSON('package.json'),
-    
-    banner: grunt.template.process(grunt.file.read('html/banner.src.html')),
+	grunt.initConfig({
 
-    concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
-      },
-      dist: {
-        src: ['lib/<%= pkg.name %>.js'],
-        dest: 'dist/<%= pkg.name %>.js'
-      }
-    },
+		// Creat the html files from page layouts and partial html fragments
+		assemble:{
+			options: {
+				assets: 'dist/',
+				layout:'html/layout.h5bp.hbs',
+				partials: 'html/partials/*.hbs'
+			},
+			pages: {
+				files:[{
+					expand:true,
+					cwd: 'html/pages/',
+					src: ['**/*.hbs'],
+					dest: '_dist',
+					ext: '.html'
+				}]
+			}
+		},
 
-    uglify: {
-      options: {
-        banner: '<%= banner %>'
-      },
-      dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name %>.min.js'
-      }
-    },
+		// Copy front end js libs to the dest dir.
+		bower: {
+			dev: {
+				dest: '_dist/js/vendor/'
+			}
+		}
+	});
 
-    jshint: {
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        unused: true,
-        boss: true,
-        eqnull: true,
-        browser: true,
-        globals: {}
-      },
-      gruntfile: {
-        src: 'Gruntfile.js'
-      },
-      lib_test: {
-        src: ['lib/**/*.js', 'test/**/*.js']
-      }
-    }
-  });
+	grunt.loadNpmTasks('assemble');
+	grunt.loadNpmTasks('grunt-bower');
 
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-
-  // Default task.
-  grunt.registerTask('default', ['jshint','concat', 'uglify']);
-
+	grunt.registerTask('default', ['assemble', 'bower']);
 };
