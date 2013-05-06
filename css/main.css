@@ -4,6 +4,10 @@ html, body, #map{
 	width:100%;
 	height: 100%;
 }
+#map{
+	position: absolute;
+	top:0;
+}
 body{
 	background: #fefefe;
 	font-family: Lato, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
@@ -13,9 +17,6 @@ body{
 	position: absolute;
 	top:0;
 	left:0;
-}
-#map{
-	position: absolute;
 }
 .leaflet-control-zoom{
 	display: none;
@@ -27,23 +28,30 @@ body{
 	background: rgba(0,0,0,0.2);
 	padding:30px 50px 50px 40px;
 }
+header{
+	padding:8px 10px;
+	position: absolute;
+	top:0;
+}
 header h1, 
 header h2{
 	font-weight: 300;
-	font-size: 2.2em;
+	font-size: 2.1em;
 	line-height: 1em;
 	margin:0;
 	padding:0;
 }
 header h2{
 	font-weight: 400;
-	font-size: 1.3em;	
+	font-size: 1.1em;
+	letter-spacing: 1.5px;	
+	padding: 2px 0 0 5px;
 }
-
 body.home .subjects{
 	position: absolute;
 	bottom: 0;
 	width: 100%;
+	background: #333;
 }
 body.home .subjects .maths{
 	background-color: rgb(51, 153, 51);
@@ -59,11 +67,11 @@ body.home .subject:hover{
 	opacity: 1;	
 }
 body.home .subject h2{
-	padding: 10px;
+	padding: 4px 10px;
 	display: inline-block;
+	font-size: 1.7em;
 }
 body.home .french h2{
-	background-color: 
 }
 body.home .french {
 	background-color: rgb(0,85,164);
