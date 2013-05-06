@@ -1,4 +1,4 @@
-Tutor Wire - Web Frontend
+Tutor Wire - Web Frontend [![devDependency Status](https://david-dm.org/olizilla/tutorwire-www/dev-status.png)](https://david-dm.org/olizilla/tutorwire-www#info=devDependencies)
 =========================
 
 **An experiment in build time compilation of static html, with all the moving parts and dynamism powered by JS after page load**
