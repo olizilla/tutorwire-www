@@ -5,9 +5,8 @@ html, body, #map{
 	height: 100%;
 }
 body{
-	background-color: #fefefe;
-	/*font-family: Trebuchet MS;*/
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	background: #fefefe;
+	font-family: Lato, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
    	font-weight: 300;
 }
 .navbar{
@@ -28,13 +27,75 @@ body{
 	background: rgba(0,0,0,0.2);
 	padding:30px 50px 50px 40px;
 }
-h1{
+header h1, 
+header h2{
 	font-weight: 300;
-	font-size: 2em;
+	font-size: 2.2em;
+	line-height: 1em;
+	margin:0;
+	padding:0;
 }
+header h2{
+	font-weight: 400;
+	font-size: 1.3em;	
+}
+
+body.home .subjects{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+body.home .subjects .maths{
+	background-color: rgb(51, 153, 51);
+}
+body.home .subject{
+	color: #fefefe;
+	background-color: rgb(204, 51, 0);
+
+	opacity: 0.9;
+	transition: opacity 1s ease;
+}
+body.home .subject:hover{
+	opacity: 1;	
+}
+body.home .subject h2{
+	padding: 10px;
+	display: inline-block;
+}
+body.home .french h2{
+	background-color: 
+}
+body.home .french {
+	background-color: rgb(0,85,164);
+}
+body.home .french span{
+	color:rgb(250,60,50);
+}
+.french .flag {
+	display: none;
+}
+.french .flag,
+.french .flag div
+{
+	display: inline-block;
+	height: 100%;
+}
+.french .flag div{
+	width: 30px;	
+}
+.french .flag .red{   background: rgb(250,  60,  50); }
+.french .flag .white{ background: rgb(255, 255, 255); }
+.french .flag .blue{  background: rgb(  0,  85, 164); }
+
 /* bootstrap tweaks */
 input[type="text"].input-large{
 	font-size: 1.6em;
 	line-height: 1.6em;
 	height: 28px;
+}
+.navbar-inner {
+
+}
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+	border-radius: 2px;	
 }
