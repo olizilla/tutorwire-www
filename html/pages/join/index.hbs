@@ -7,7 +7,7 @@ bodyClass: join
 
 <p>Start creating your tutoring profile</p>
 
-<form method="post" class="form-horizontal" action="http://localhost:9000/tutor">
+<form method="post" class="form-horizontal">
 	<div class="control-group">
 		<label class="control-label" for="email">Email</label>
 		<input type="email" name="email" id="email">
@@ -20,12 +20,46 @@ bodyClass: join
 		<label class="control-label" for="subject">Teaching</label>
 		<input type="text" name="subject" id="subject" autocomplete="off" data-provide="typeahead" data-source='{{> subjects }}'>
 	</div>
-	<button type="submit" class="btn" id="addTutor">Create profile</button>
+	<input type="submit" class="btn" id="addTutor" value="Create Profile"/>
 </form>
-
 
 <script>
 $(document).ready(function(){
-	console.log('GO!');
+
+	console.log('ping')
+
+	$('form').submit(addTutor);
+
+	function addTutor(event){
+
+		event.preventDefault();
+
+		var reqData = {
+			email: $('#email').val(),
+			name: $('#name').val(),
+			subjects: [ $('#subject').val() ],
+			location:{
+				name: 'Moon',
+				coords:{
+					lat: 59,
+					lng: -4
+				}
+			}
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://localhost:9000/tutor',
+			data: JSON.stringify(reqData),
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function(data){
+				window.location = '/tutor/' + data.puid
+			},
+			failure: console.log
+		});
+
+		return false;
+	}
 });
 </script>
