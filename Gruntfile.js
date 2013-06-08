@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 		// Creat the html files from page layouts and partial html fragments
 		assemble:{
 			options: {
-				assets: '/',
+				assets: '/assets',
 				layout:'html/layout.h5bp.hbs',
 				partials: 'html/partials/*.hbs',
 				data: 'html/data/*.json'
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 		// Copy front end js libs to the dest dir.
 		bower: {
 			dev: {
-				dest: '_dist/js/vendor/'
+				dest: '_dist/assets/js/vendor/'
 			}
 		},
 
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
 				files:[{
 						expand:true,
 						src: ['{js,css}/*'],
-						dest: '_dist/',
+						dest: '_dist/assets',
 						ext: ''
 					}]
 				}

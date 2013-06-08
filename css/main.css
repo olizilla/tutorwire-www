@@ -104,6 +104,17 @@ input[type="text"].input-large{
 .navbar-inner {
 
 }
+.photoFrame{
+	display: inline-block;
+	width:200px;
+	height:200px;
+	background: #555;
+	border:solid white 10px;
+	color:#CCC;
+}
+.tutor h1 span{
+	color:#000;
+}
 select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
 	border-radius: 2px;	
 }

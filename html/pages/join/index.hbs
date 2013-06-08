@@ -2,27 +2,87 @@
 title: Join up
 bodyClass: join
 ---
-{{> nav }}
-<h1>{{ title }}</h1>
+{{> map-mapbox}}
 
-<p>Start creating your tutoring profile</p>
-
+<div class="overlay">
 <form method="post" class="form-horizontal">
+	<p>Start creating your tutoring profile</p>
+	<div id="photoDropTarget" class="photoFrame">Drop photo here</div>
 	<div class="control-group">
-		<label class="control-label" for="email">Email</label>
-		<input type="email" name="email" id="email">
+		<!-- <label class="control-label" for="name">Name</label> -->
+		<input type="text" placeholder="Name" name="name" id="name" >
 	</div>
 	<div class="control-group">
-		<label class="control-label" for="name">Name</label>
-		<input type="text" name="name" id="name">
+		<!-- <label class="control-label" for="subject">Teaching</label> -->
+		<input type="text" placeholder="Subject" name="subject" id="subject" autocomplete="off" data-provide="typeahead" data-source='{{> subjects }}'>
 	</div>
 	<div class="control-group">
-		<label class="control-label" for="subject">Teaching</label>
-		<input type="text" name="subject" id="subject" autocomplete="off" data-provide="typeahead" data-source='{{> subjects }}'>
+		<!-- <label class="control-label" for="place">Near</label> -->
+		<input type="text" placeholder="Near" name="place" id="place" autocomplete="off" data-provide="typeahead" data-source='{{> subjects }}'>
 	</div>
+	<div class="control-group">
+		<!-- <label class="control-label" for="email">Email</label> -->
+		<input type="email" placeholder="your@email.address" name="email" id="email">
+	</div>		
 	<input type="submit" class="btn" id="addTutor" value="Create Profile"/>
 </form>
+</div>
 
+<script src="{{assets}}/js/uk-cities.js"></script>
+<script>
+var geocoder = L.mapbox.geocoder('tutorwire.map-rbl1tiup');
+
+var place = $('#place');
+
+place.typeahead({ source: app.uk.getCityNames });
+
+var placeMarker;
+
+place.on('change', function(evt){
+	var cityName = $(this).val();
+	var cityData = app.uk.cities[cityName];
+	console.log("Selected:", cityName, cityData);
+	if (placeMarker){
+		map.removeLayer(placeMarker);
+	}
+	placeMarker = L.marker(cityData)
+	placeMarker.addTo(map);
+	map.setView(cityData, 8);
+	app.location = {
+		name: cityName,
+		coords: {
+			lat: parseFloat(cityData.lat),
+			lng: parseFloat(cityData.lng)
+		}
+	}
+});
+
+map.on('locationfound', function (event) {
+	if (placeMarker){
+		map.removeLayer(placeMarker);
+	}
+	placeMarker = L.marker(event.latlng)
+	placeMarker.addTo(map);
+	map.setView(event.latlng, 8);
+	geocoder.reverseQuery(event.latlng, function (err, response){
+		if (err) { return console.error(err) }
+		
+		// response looks like: {"query":[-0.0801,51.4657],"results":[[{"bounds":[-0.523222999999989,51.27866,0.336112,51.72023],"lat":51.5040006418191,"lon":-0.109467698133307,"name":"London","score":900001728809196.6,"type":"place","id":"mapbox-places.219827"},{"bounds":[-0.107894862857551,51.4191873235362,-0.0231455141541109,51.51158478481],"lat":51.4653860541731,"lon":-0.0636831061709452,"name":"Southwark","score":30926433.0294826,"type":"province","id":"province.2903"},{"bounds":[-13.6913559567794,49.9096161909876,1.77170536308596,60.8475532028857],"lat":54.3177967325959,"lon":-1.91064039912679,"name":"United Kingdom","population":61113205,"type":"country","id":"country.152"}]],"attribution":{"mapbox-places":"<a href='http://mapbox.com/about/maps' target='_blank'>Terms & Feedback</a>"}}
+		var city = response.results[0][0].name
+		place.val(city);
+		
+		app.location = {
+			name: city,
+			coords: event.latlng
+		}
+	})
+})
+	
+map.locate();
+
+</script>
+
+<script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
 <script>
 $(document).ready(function(){
 
@@ -30,26 +90,49 @@ $(document).ready(function(){
 
 	$('form').submit(addTutor);
 
+	addPhotoDropTarget();
+
+	function addPhotoDropTarget(){
+		filepicker.setKey('AeYGxADbBSoe2uvUCJHBWz');
+		filepicker.makeDropPane($('#photoDropTarget')[0], {
+			multiple: true,
+			dragEnter: function() {
+					$("#photoDropTarget").html("Drop to upload")
+			},
+			dragLeave: function() {
+					$("#photoDropTarget").html("Drop files here")
+			},
+			onSuccess: function(fpfiles) {
+					$("#photoDropTarget").empty();
+					console.log(fpfiles);
+					app.photo = fpfiles[0];
+					var img = $('<img>').attr('src', app.photo.url);
+					$("#photoDropTarget").append(img);
+			},
+			onError: function(type, message) {
+					$("#localDropResult").text('('+type+') '+ message);
+			},
+			onProgress: function(percentage) {
+					$("#photoDropTarget").text("Uploading ("+percentage+"%)");
+			}
+		});
+	}
+
 	function addTutor(event){
 
 		event.preventDefault();
 
 		var reqData = {
-			email: $('#email').val(),
+			photo: app.photo,
 			name: $('#name').val(),
-			subjects: [ $('#subject').val() ],
-			location:{
-				name: 'Moon',
-				coords:{
-					lat: 59,
-					lng: -4
-				}
-			}
+			email: $('#email').val(),
+			subject: $('#subject').val(),
+			location: app.location
 		}
 
 		$.ajax({
 			type: 'POST',
-			url: 'http://localhost:9000/tutor',
+			url: app.api + '/tutor',
 			data: JSON.stringify(reqData),
 			dataType: 'json',
 			contentType: 'application/json',

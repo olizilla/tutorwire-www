@@ -1,0 +1,19 @@
+<div id="map"></div>
+<link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.css' rel='stylesheet' />
+<!--[if lte IE 8]><link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.ie.css' rel='stylesheet' /><![endif]-->
+<script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.js'></script>
+<script>
+var map;
+
+(function initMap() {
+
+	map = L.mapbox.map('map', 'tutorwire.map-rbl1tiup',{
+		attributionControl: false
+	});
+
+	map.setView([55,-10], 6);
+
+	return map;
+
+})();
+</script>
