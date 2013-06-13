@@ -13,6 +13,9 @@ body{
 	font-family: Lato, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
    	font-weight: 300;
 }
+label{
+	font-size: 1.15em;
+}
 .navbar{
 	position: absolute;
 	top:0;
@@ -23,10 +26,10 @@ body{
 }
 .overlay{
 	position: absolute;
-	top:50px;
+	top:30px;
 	left:0;
-	background: rgba(0,0,0,0.2);
-	padding:30px 50px 50px 30px;
+	/*background: #eee;*/
+	padding:20px 30px 5px 15px;
 }
 header{
 	padding:8px 10px;
@@ -48,7 +51,7 @@ header h2{
 	padding: 2px 0 0 5px;
 }
 body.home .overlay{
-	top:100px;
+	background: none;
 	left:0;
 	transition: left 0.4s ease;
 }
@@ -69,14 +72,14 @@ body.home .subject{
 	color: #fefefe;
 	background-color: rgb(204, 51, 0);
 
-	opacity: 0.9;
+	opacity: 0.8;
 	transition: opacity 1s ease;
 }
 body.home .subject:hover{
 	opacity: 1;	
 }
 body.home .subject h2{
-	padding: 0px 10px;
+	padding: 0px 15px;
 	display: inline-block;
 	font-size: 1.7em;
 }
@@ -110,7 +113,10 @@ input[type="text"].input-large{
 	line-height: 1.6em;
 	height: 34px;
 }
-
+.photo-icon{
+	background: #555;
+	border:solid white 4px;	
+}
 .photoFrame{
 	display: inline-block;
 	width:200px;
@@ -124,4 +130,17 @@ input[type="text"].input-large{
 }
 select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
 	border-radius: 2px;	
+}
+.strapline{
+	display: none;
+}
+@media only screen and (min-width: 768px) {
+    /* Style adjustments for viewports that meet the condition */
+ 	body.home .strapline{
+		display: block;
+	}
+
+	.overlay{
+		top:100px;
+	} 
 }

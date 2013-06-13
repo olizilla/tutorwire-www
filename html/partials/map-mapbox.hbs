@@ -2,6 +2,10 @@
 <link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.css' rel='stylesheet' />
 <!--[if lte IE 8]><link href='http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.ie.css' rel='stylesheet' /><![endif]-->
 <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.3/mapbox.js'></script>
+
+<script src='{{assets}}/js/leaflet.awesome-markers.js'></script>
+<link href='{{assets}}/css/leaflet.awesome-markers.css' rel='stylesheet' />
+
 <script>
 var map;
 
@@ -9,11 +13,11 @@ var map;
 
 	map = app.map = L.mapbox.map('map', 'tutorwire.map-rbl1tiup',{
 		attributionControl: false,
-		minZoom: 5,
-		scrollWheelZoom: false
+		minZoom: 6
+		// scrollWheelZoom: false
 	});
 
-	map.setView([55,-10], 6);
+	map.setView([55,-6], 6);
 
 	return map;
 
