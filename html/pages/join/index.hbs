@@ -9,19 +9,15 @@ bodyClass: join
 	<p>Start creating your tutoring profile</p>
 	<div id="photoDropTarget" class="photoFrame">Drop photo here</div>
 	<div class="control-group">
-		<!-- <label class="control-label" for="name">Name</label> -->
 		<input type="text" placeholder="Name" name="name" id="name" >
 	</div>
 	<div class="control-group">
-		<!-- <label class="control-label" for="subject">Teaching</label> -->
 		<input type="text" placeholder="Subject" name="subject" id="subject" autocomplete="off" data-provide="typeahead" data-source='{{> subjects }}'>
 	</div>
 	<div class="control-group">
-		<!-- <label class="control-label" for="place">Near</label> -->
 		<input type="text" placeholder="Near" name="place" id="place" autocomplete="off" data-provide="typeahead" data-source='{{> subjects }}'>
 	</div>
 	<div class="control-group">
-		<!-- <label class="control-label" for="email">Email</label> -->
 		<input type="email" placeholder="your@email.address" name="email" id="email">
 	</div>		
 	<input type="submit" class="btn" id="addTutor" value="Create Profile"/>
@@ -39,23 +35,41 @@ place.typeahead({ source: app.uk.getCityNames });
 var placeMarker;
 
 place.on('change', function(evt){
-	var cityName = $(this).val();
-	var cityData = app.uk.cities[cityName];
-	console.log("Selected:", cityName, cityData);
+
+	var name = $(this).val();
+	var coords = app.uk.cities[name];
+
+	console.log('Place changed', name, coords) 
+
+	if (!coords){
+		console.log('Geocoding', name);
+		
+		geocoder.query(name, function(err, response){
+			if (err) { return console.error(err) }				
+			console.log('Geocoded', name, response);
+			var latlng = response.latlng
+			showPlace(name, {lat: latlng[0], lng: latlng[1]}); // latlng is an array
+		});
+
+	} else {
+
+		showPlace(name, coords) // coords is an object
+	}
+});
+
+function showPlace (name, coords) {
+	console.log('Showing', name, coords);
 	if (placeMarker){
 		map.removeLayer(placeMarker);
 	}
-	placeMarker = L.marker(cityData)
+	placeMarker = L.marker(coords)
 	placeMarker.addTo(map);
-	map.setView(cityData, 8);
+	map.setView(coords, 8);
 	app.location = {
-		name: cityName,
-		coords: {
-			lat: parseFloat(cityData.lat),
-			lng: parseFloat(cityData.lng)
-		}
+		name: name,
+		coords: app.normalizeCoords(coords)
 	}
-});
+}
 
 map.on('locationfound', function (event) {
 	if (placeMarker){
@@ -73,12 +87,14 @@ map.on('locationfound', function (event) {
 		
 		app.location = {
 			name: city,
-			coords: event.latlng
+			coords: app.normalizeCoords(event.latlng)
 		}
 	})
 })
 	
 map.locate();
+
+
 
 </script>
 

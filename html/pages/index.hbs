@@ -9,6 +9,15 @@ bodyClass: home
 	<h2>Find tutors, fast.</h2>
 	</hgroup>
 </header>
+<div class="overlay hide">
+	<p>What would you like to learn?</p>
+	<form id="searchForm">
+	<div class="input-append">
+		<input id="subject" type="text" class="input-large" name="subject" id="subject" autocomplete="off" data-provide="typeahead" data-source='{{> subjects }}'>
+		<button id="search" class="btn btn-large" type="button">Search</button>
+	</div>
+	</form>
+</div>
 <div class="subjects">
 	<div class="subject maths">
 		<h2>Learn Maths</h2>
@@ -17,9 +26,53 @@ bodyClass: home
 		<h2>Learn Guitar</h2>
 	</div>
 	<div class="subject french">
-		<h2><span>Learn</span> French</h2>
-		<!-- <div class="flag">
-				<div class="red">&nbsp;</div><div class="white">&nbsp;</div><div class="blue">&nbsp;</div>
-			</div> -->
+		<h2>Learn French</h2>
 	</div>
 </div>
+<script>
+function initPage () {
+	$('#searchForm').submit(search);
+	$('#search').click(search);
+
+	$('.hide').removeClass('hide');
+
+	var magicSearch = 'Maths';
+
+	setTimeout(function () {
+		type(magicSearch, 
+			function (chars) { $('#subject').attr('placeholder', chars) }, 
+			function (word)  { 
+				app.getTutorsBySubject(magicSearch, function (err, tutors) {
+					app.showTutorsOnMap(tutors);
+				});
+			}
+		)
+	}, 500);
+}
+
+function search(event){
+	event.preventDefault();
+	var subject = $('#subject').val();
+	app.getTutorsBySubject(subject, function (err, tutors) {
+		app.showTutorsOnMap(tutors);
+	});
+}
+
+function type (word, cb, done) {
+	var index = 1;
+	var interval = setInterval(function () {
+		
+		cb(word.substring(0, index));
+		
+		index++
+		
+		if (index > word.length) {
+			clearInterval(interval)
+			done(word);
+		}
+	}, 100);
+}
+
+$(document).ready(initPage)
+
+</script>
