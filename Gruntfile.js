@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 		// Creat the html files from page layouts and partial html fragments
 		assemble:{
 			options: {
-				assets: '/assets',
+				assets: '_dist/assets',
 				layout:'html/layout.h5bp.hbs',
 				partials: 'html/partials/*.hbs',
 				data: 'html/data/*.json'
