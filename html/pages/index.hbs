@@ -122,6 +122,8 @@ function search(event){
 	var subject = $('#subject').val();
 	app.getTutorsBySubject(subject, function (err, tutors) {
 		app.showTutorsOnMap(tutors);
+
+		// Show results
 	});
 }
 

@@ -1,0 +1,7 @@
+{
+	"app":{
+		"port": 7001,
+		"root": "_dist",
+		"api": "http://localhost:9000"
+	}
+}

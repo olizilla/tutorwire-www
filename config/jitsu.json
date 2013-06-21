@@ -1,0 +1,7 @@
+{
+	"app":{
+		"port": 80,
+		"root": "_dist",
+		"api": "http://tutorwire-api.nodejitsu.com"
+	}
+}

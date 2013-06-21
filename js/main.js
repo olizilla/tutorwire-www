@@ -1,6 +1,6 @@
 var app = {
 	
-	api: 'http://localhost:9000',
+	api: '/api',
 
 	geocoder: function () {
 		return L.mapbox.geocoder('tutorwire.map-rbl1tiup')
@@ -96,7 +96,8 @@ var app = {
 				icon: icon
 			});
 
-			marker.bindPopup('Learn ' + tutor.subject + ' with ' + tutor.name);
+			var profile = '<div class="photoFrame"><img src="'+tutor.photo.url+'" /></div> <p>Learn ' + tutor.subject + ' with ' + tutor.name + '</p>'
+			marker.bindPopup(profile);
 
 			marker.addTo(app.map);
 
@@ -106,17 +107,31 @@ var app = {
 
 	getTutorsBySubject: function (subject, cb) {
 		console.log('Getting tutors for', subject);
-		$.getJSON(this.api + '/tutors/for/' + subject, function (resp) {
-			console.log('Got tutors for', subject, resp);
-			cb(null, resp);
+		$.ajax({
+			dataType: 'json',
+			crossDomain: true,
+			url: this.api + '/tutors/for/' + subject,
+			success: function (resp) {
+				console.log('Got tutors for', subject, resp);
+				cb(null, resp);
+			}
 		});
+		// $.getJSON(this.api + '/tutors/for/' + subject, function (resp) {
+		// 	console.log('Got tutors for', subject, resp);
+		// 	cb(null, resp);
+		// });
 	},
 
 	getTutor: function (puid, cb) {
 		console.log('Getting', puid);
-		$.getJSON(this.api + '/tutor/' + puid, function (resp){
-			cb(null, resp);
-		})
+		$.ajax({
+			dataType: 'json',
+			crossDomain: true,
+			url: this.api + '/tutor/' + puid,
+			success: function (resp) {
+				cb(null, resp);
+			}
+		});
 	},
 
 	normalizeCoords: function (coords) {
