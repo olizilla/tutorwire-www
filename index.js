@@ -45,4 +45,6 @@ function server (req, res) {
 
 http.createServer(server).listen(config.app.port);
 
-console.log('tutorwire-www listening on :' + config.app.port);
+console.log('[ENV %s] tutorwire-www listening on %s', process.env.NODE_ENV, config.app.port);
+
+// console.log('tutorwire-www listening on :' + config.app.port);
