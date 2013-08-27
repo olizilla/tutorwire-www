@@ -1,11 +1,12 @@
 {
   "name": "tutorwire-www",
-  "version": "0.1.1",
+  "version": "0.1.1-4",
   "description": "Web front-end for finding tutors, fast.",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "predeploy": "grunt"
   },
   "repository": "https://github.com/olizilla/tutorwire-www",
   "author": "olizilla",
