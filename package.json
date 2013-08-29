@@ -13,16 +13,16 @@
   "license": "BSD",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "assemble": "~0.3.76",
-    "grunt-bower": "~0.5.1",
-    "grunt-contrib-watch": "~0.4",
+    "assemble": "~0.4.4",
+    "grunt-bower": "~0.6.1",
+    "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-copy": "~0.4.1"
   },
   "dependencies": {
-    "express": "~3.2.5",
+    "express": "~3.3.7",
     "config": "~0.4.27",
-    "request": "~2.21.0",
+    "request": "~2.27.0",
     "routes": "~0.2.0",
     "filed": "~0.1.0"
   },
