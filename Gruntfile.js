@@ -40,9 +40,10 @@ module.exports = function(grunt) {
 				}
 		},
 
-		watch:{
+		watch: {
+			options: {atBegin: true},
 			files: ['html/*', 'html/**/*', 'css/*', 'js/*', 'Gruntfile.js'],
-			tasks:['default']
+			tasks: ['default']
 		}
 
 	});
