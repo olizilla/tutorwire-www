@@ -1,4 +1,4 @@
-Tutor Wire - Web Frontend [![devDependency Status](https://david-dm.org/olizilla/tutorwire-www/dev-status.png)](https://david-dm.org/olizilla/tutorwire-www#info=devDependencies)
+Tutor Wire - Web Frontend [![Dependency Status](https://david-dm.org/olizilla/tutorwire-www.png)](https://david-dm.org/olizilla/tutorwire-www) [![devDependency Status](https://david-dm.org/olizilla/tutorwire-www/dev-status.png)](https://david-dm.org/olizilla/tutorwire-www#info=devDependencies)
 =========================
 
 **An experiment in build time compilation of static html, with all the moving parts and dynamism powered by JS after page load**
@@ -6,12 +6,10 @@ Tutor Wire - Web Frontend [![devDependency Status](https://david-dm.org/olizilla
 Uses:
 - [Handlebars] - Simple templating for pages, layouts and partials.
 - [Assemble] - Merging all the htmls into a real website in _dist 
-- [Bower] - Defining the front end, 3rd party, js lib dependencies in bower.json
+- [Browserify] - Node style module require for the frontend
 - [Grunt] - The task runner that brings it all together with a `grunt`
-
-
 
 [Handlebars]: http://handlebarsjs.com/
 [Assemble]: https://github.com/assemble/assemble
-[Bower]: http://bower.io/
+[Browserify]: http://browserify.org/
 [Grunt]: http://gruntjs.com/
