@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 
-		// Creat the html files from page layouts and partial html fragments
+		// Create the html files from page layouts and partial html fragments
 		assemble:{
 			options: {
 				assets: '_dist/assets',
@@ -22,10 +22,11 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// Copy front end js libs to the dest dir.
-		bower: {
-			dev: {
-				dest: '_dist/assets/js/vendor/'
+		browserify: {
+			dist: {
+				files: {
+					'_dist/assets/js/bundle.js': 'js/main.js'
+				}
 			}
 		},
 
@@ -33,9 +34,8 @@ module.exports = function(grunt) {
 			main:{
 				files:[{
 						expand:true,
-						src: ['{js,css}/**/*'],
-						dest: '_dist/assets',
-						ext: ''
+						src: ['css/**/*', 'js/vendor/**/*'],
+						dest: '_dist/assets'
 					}]
 				}
 		},
@@ -49,9 +49,9 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks('assemble');
-	grunt.loadNpmTasks('grunt-bower');
+	grunt.loadNpmTasks('grunt-browserify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 
-	grunt.registerTask('default', ['assemble', 'copy', 'bower']);
+	grunt.registerTask('default', ['assemble', 'copy', 'browserify']);
 };

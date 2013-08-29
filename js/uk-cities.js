@@ -5,11 +5,9 @@
 // "City of Westminster" killed
 // "City of London"--> London
 
-
-var app = app || {};
-app.uk = {
+module.exports = {
   
-  getCityNames: function(){ return Object.keys( app.uk.cities )},
+  getCityNames: function () { return Object.keys( module.exports.cities )},
   
   cities: {
     "Bath": {
