@@ -139,6 +139,8 @@ input[type="text"].input-large{
 	background: #555;
 	border:solid white 10px;
 	color:#CCC;
+	text-align: center;
+	line-height: 200px;
 }
 .leaflet-popup-content .photoFrame{
 	height: auto;
