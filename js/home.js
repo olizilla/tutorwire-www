@@ -82,8 +82,13 @@ function showPlace (name, coords) {
 
 function search (event){
 	event.preventDefault();
-	var subject = $('#subject').val();
-	app.getTutorsBySubject(subject, function (err, tutors) {
+	var subject = $('#subject');
+	
+	if (!subject.val()) {
+		return subject.focus()
+	}
+	
+	app.getTutorsBySubject(subject.val(), function (err, tutors) {
 		app.showTutorsOnMap(tutors);
 
 		// Show results
