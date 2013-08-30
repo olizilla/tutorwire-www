@@ -8,6 +8,16 @@ html, body, #map{
 	position: absolute;
 	top:0;
 }
+#map:after {
+	content: " ";
+	background: rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 0.25em #000;
+	border-right: 1px solid #000;
+	width: 20%;
+	min-width: 280px;
+	height: 100%;
+	position: absolute;
+}
 body{
 	background: #fefefe;
 	font-family: Lato, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
@@ -15,6 +25,7 @@ body{
 }
 label{
 	font-size: 1.15em;
+	color: #fff;
 }
 .navbar{
 	position: absolute;
@@ -31,6 +42,9 @@ label{
 	/*background: #eee;*/
 	padding:20px 30px 5px 15px;
 }
+.overlay p {
+	color: #fff;
+}
 header{
 	padding:8px 10px;
 	position: absolute;
@@ -43,6 +57,7 @@ header h2{
 	line-height: 1em;
 	margin:0;
 	padding:0;
+	color:#fff;
 }
 header h2{
 	font-weight: 400;
@@ -151,4 +166,8 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 	.overlay{
 		top:100px;
 	} 
+	
+	#map:after {
+		min-width: 350px;
+	}
 }
