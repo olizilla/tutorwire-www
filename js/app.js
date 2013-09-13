@@ -1,3 +1,7 @@
+var fs = require("fs")
+
+var profileTpl = Handlebars.compile(fs.readFileSync("html/partials/brfs/profile-popup.hbs"))
+
 var app = {
 	
 	api: '/api',
@@ -98,9 +102,8 @@ var app = {
 				title: tutor.name,
 				icon: icon
 			});
-
-			var profile = '<div class="photoFrame"><img src="'+tutor.photo.url+'" /></div> <p>Learn ' + tutor.subject + ' with ' + tutor.name + '</p>'
-			marker.bindPopup(profile);
+			
+			marker.bindPopup(profileTpl(tutor));
 
 			marker.addTo(app.map);
 

@@ -1,0 +1,1 @@
+Handlebars partials that are inlined in javascript with [brfs](https://github.com/substack/brfs).

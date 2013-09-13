@@ -1,7 +1,3 @@
-if (!$('body.join').length) {
-	return;
-}
-
 var app = require('./app');
 var ukCities = require('./uk-cities');
 

@@ -24,6 +24,9 @@ module.exports = function(grunt) {
 
 		browserify: {
 			dist: {
+				options: {
+					transform: ['brfs']
+				},
 				files: {
 					'_dist/assets/js/bundle.js': 'js/main.js'
 				}
