@@ -149,6 +149,23 @@ var app = {
 
 	trimTo: function (number, decimalPlaces) {		
 		return parseFloat(number.toFixed(decimalPlaces));
+	},
+	
+	type: function (word, cb, done) {
+		var index = 1;
+		var interval = setInterval(function () {
+			
+			cb(word.substring(0, index));
+			
+			index++;
+			
+			if (index > word.length) {
+				clearInterval(interval)
+				if ($.isFunction(done)){
+					done(word);
+				}
+			}
+		}, 100);
 	}
 };
 

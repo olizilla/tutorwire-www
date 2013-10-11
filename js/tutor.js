@@ -18,13 +18,34 @@ if (!res || !res[1]){
 		if(!tutor){
 			return;
 		}
-	
-		$('#tutor-name').text(tutor.name);
-	
-		$('#tutor-subject').text(tutor.subject);
-	
-		$('#tutor-location-name').text(tutor.location.name);
-	
+		
+		var tutorName = $('#tutor-name'),
+			tutorSubject = $('#tutor-subject'),
+			tutorLocationName = $('#tutor-location-name');
+		
+		app.type(
+			tutor.subject,
+			function (txt) {
+				tutorSubject.text(txt)
+			},
+			function () {
+				app.type(
+					tutor.name,
+					function (txt) {
+						tutorName.text(txt)
+					},
+					function () {
+						app.type(
+							tutor.location.name,
+							function (txt) {
+								tutorLocationName.text(txt)
+							}
+						)
+					}
+				)
+			}
+		)
+		
 		if (tutor.photo){
 			var img = $('<img>').attr('src', tutor.photo.url);
 			$('#photoDropTarget').append(img);

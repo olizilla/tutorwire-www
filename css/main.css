@@ -41,8 +41,12 @@ label{
 	left:0;
 	/*background: #eee;*/
 	padding:20px 30px 5px 15px;
+	width: 20%;
+	min-width: 280px;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
-.overlay p {
+.overlay h1, .overlay p {
 	color: #fff;
 }
 header{
@@ -65,6 +69,9 @@ header h2{
 	letter-spacing: 1.5px;	
 	padding: 2px 0 0 5px;
 }
+
+/** Home page **/
+
 body.home .overlay{
 	background: none;
 	left:0;
@@ -98,31 +105,28 @@ body.home .subject h2{
 	display: inline-block;
 	font-size: 1.7em;
 }
-body.home .french h2{
-}
-body.home .french {
-	background-color: rgb(0,85,164);
-}
-body.home .french span{
-	color:rgb(250,60,50);
-}
-.french .flag {
-	display: none;
-}
-.french .flag,
-.french .flag div
-{
-	display: inline-block;
-	height: 100%;
-}
-.french .flag div{
-	width: 30px;	
-}
-.french .flag .red{   background: rgb(250,  60,  50); }
-.french .flag .white{ background: rgb(255, 255, 255); }
-.french .flag .blue{  background: rgb(  0,  85, 164); }
 
-/* bootstrap tweaks */
+/** Tutor page **/
+
+body.tutor h1 {
+	font-weight: normal;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	overflow: hidden;
+}
+body.tutor h1 strong {
+	display: inline-block;
+	width: 2.5em;
+	color: #ccc;
+	font-weight: normal;
+	text-align: right;
+}
+body.tutor h1 span {
+	font-weight: normal;
+}
+
+/** Bootstrap tweaks **/
 input[type="text"].input-large{
 	/*font-size: 1.6em;*/
 	line-height: 1.6em;
@@ -149,9 +153,6 @@ input[type="text"].input-large{
 	width:inherit;
 }
 
-.tutor h1 span{
-	color:#000;
-}
 select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
 	border-radius: 2px;	
 }
@@ -169,7 +170,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 		top:100px;
 	} 
 	
-	#map:after {
+	#map:after, .overlay {
 		min-width: 350px;
 	}
 }

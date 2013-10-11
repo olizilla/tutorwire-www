@@ -23,10 +23,10 @@ $('.hide').removeClass('hide');
 var magicSearch = 'Maths';
 
 setTimeout(function () {
-	type(magicSearch, 
+	app.type(magicSearch, 
 		function (chars) { $('#subject').attr('placeholder', chars) }, 
 		function (word)  { 
-			type('UK', 
+			app.type('UK', 
 				function (chars) { $('#place').attr('placeholder', chars) },
 				function (word)  { 
 					// app.getTutorsBySubject(magicSearch, function (err, tutors) {
@@ -89,21 +89,4 @@ function search (event){
 
 		// Show results
 	});
-}
-
-function type (word, cb, done) {
-	var index = 1;
-	var interval = setInterval(function () {
-		
-		cb(word.substring(0, index));
-		
-		index++;
-		
-		if (index > word.length) {
-			clearInterval(interval)
-			if ($.isFunction(done)){
-				done(word);
-			}
-		}
-	}, 100);
 }
