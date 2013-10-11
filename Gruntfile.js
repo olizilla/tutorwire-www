@@ -47,6 +47,10 @@ module.exports = function(grunt) {
 			options: {atBegin: true},
 			files: ['html/*', 'html/**/*', 'css/*', 'js/*', 'img/**', 'Gruntfile.js'],
 			tasks: ['assemble', 'copy', 'browserify:watch']
+		},
+		
+		clean: {
+			dist: '_dist/*'
 		}
 
 	});
@@ -55,6 +59,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-browserify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 
 	grunt.registerTask('default', ['assemble', 'copy', 'browserify:dist']);
 };
