@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 			main:{
 				files:[{
 						expand:true,
-						src: ['css/**/*', 'js/vendor/**/*'],
+						src: ['css/**/*', 'js/vendor/**/*', 'img/**'],
 						dest: '_dist/assets'
 					}]
 				}
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 
 		watch: {
 			options: {atBegin: true},
-			files: ['html/*', 'html/**/*', 'css/*', 'js/*', 'Gruntfile.js'],
+			files: ['html/*', 'html/**/*', 'css/*', 'js/*', 'img/**', 'Gruntfile.js'],
 			tasks: ['assemble', 'copy', 'browserify:watch']
 		}
 

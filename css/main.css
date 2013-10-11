@@ -19,6 +19,12 @@ header h2{
 	color:#fff;
 }
 header h1 a {
+	display: block;
+	width: 200px;
+	height: 51px;
+	background: url(../img/logo-tutorwire-2.png);
+	background-size: 100% 100%;
+	text-indent: -999em;
 	color: #fff;
 }
 header h1 a:hover, header h1 a:focus {
@@ -30,7 +36,7 @@ header h2{
 	font-weight: 400;
 	font-size: 1.1em;
 	letter-spacing: 1.5px;	
-	padding: 2px 0 0 5px;
+	padding: 2px 0 0 48px;
 }
 #map{
 	position: absolute;
