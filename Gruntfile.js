@@ -22,17 +22,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		browserify: {
-			dist: {
-				options: {
-					transform: ['brfs']
-				},
-				files: {
-					'_dist/assets/js/bundle.js': 'js/main.js'
-				}
-			}
-		},
-
 		copy:{
 			main:{
 				files:[{
@@ -43,10 +32,21 @@ module.exports = function(grunt) {
 				}
 		},
 
+		browserify: {
+			dist: {
+				options: {transform: ['brfs', 'uglifyify']},
+				files: {'_dist/assets/js/bundle.js': 'js/main.js'}
+			},
+			watch: {
+				options: {transform: ['brfs']},
+				files: {'_dist/assets/js/bundle.js': 'js/main.js'}
+			}
+		},
+
 		watch: {
 			options: {atBegin: true},
 			files: ['html/*', 'html/**/*', 'css/*', 'js/*', 'Gruntfile.js'],
-			tasks: ['default']
+			tasks: ['assemble', 'copy', 'browserify:watch']
 		}
 
 	});
@@ -56,5 +56,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 
-	grunt.registerTask('default', ['assemble', 'copy', 'browserify']);
+	grunt.registerTask('default', ['assemble', 'copy', 'browserify:dist']);
 };
