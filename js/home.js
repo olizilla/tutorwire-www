@@ -6,7 +6,7 @@ app.initMap();
 $('#subject').typeahead({
 	name: 'subjects',
 	local: require('./subjects')
-});
+}).on('change typeahead:selected', search);
 
 $('#searchForm').submit(search);
 
