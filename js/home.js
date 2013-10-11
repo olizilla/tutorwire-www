@@ -3,7 +3,10 @@ var ukCities = require('./uk-cities');
 
 app.initMap();
 
-$('#subject').on('change', search);
+$('#subject').typeahead({
+	name: 'subjects',
+	local: require('./subjects')
+});
 
 $('#searchForm').submit(search);
 
@@ -42,9 +45,10 @@ setTimeout(function () {
 // sync map with the place
 var place = $('#place');
 
-place.typeahead({ source: ukCities.getCityNames });
-
-place.on('change', function () {
+place.typeahead({
+	name: 'uk-city-names',
+	local: ukCities.getCityNames()}
+).on('change typeahead:selected', function () {
 
 	var name = $(this).val();
 	var coords = ukCities.cities[name];
@@ -66,6 +70,9 @@ place.on('change', function () {
 		showPlace(name, coords) // coords is an object
 	}
 });
+
+// Style tt-hint like a form-control
+$('.tt-hint').addClass('form-control');
 
 function showPlace (name, coords) {
 	console.log('Showing', name, coords);

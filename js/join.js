@@ -5,13 +5,17 @@ var map = app.initMap();
 
 var geocoder = L.mapbox.geocoder('tutorwire.map-rbl1tiup');
 
+$('#subject').typeahead({
+	name: 'subjects',
+	local: require('./subjects')
+});
+
 var place = $('#place');
 
-place.typeahead({ source: ukCities.getCityNames });
-
-var placeMarker;
-
-place.on('change', function () {
+place.typeahead({
+	name: 'city-names',
+	local: ukCities.getCityNames()}
+).on('change typeahead:selected', function () {
 
 	var name = $(this).val();
 	var coords = ukCities.cities[name];
@@ -34,6 +38,10 @@ place.on('change', function () {
 		showPlace(name, coords); // coords is an object
 	}
 });
+
+$('.tt-hint').addClass('form-control');
+
+var placeMarker;
 
 function showPlace (name, coords) {
 	console.log('Showing', name, coords);
@@ -68,7 +76,7 @@ map.on('locationfound', function (event) {
 		
 		// response looks like: {"query":[-0.0801,51.4657],"results":[[{"bounds":[-0.523222999999989,51.27866,0.336112,51.72023],"lat":51.5040006418191,"lon":-0.109467698133307,"name":"London","score":900001728809196.6,"type":"place","id":"mapbox-places.219827"},{"bounds":[-0.107894862857551,51.4191873235362,-0.0231455141541109,51.51158478481],"lat":51.4653860541731,"lon":-0.0636831061709452,"name":"Southwark","score":30926433.0294826,"type":"province","id":"province.2903"},{"bounds":[-13.6913559567794,49.9096161909876,1.77170536308596,60.8475532028857],"lat":54.3177967325959,"lon":-1.91064039912679,"name":"United Kingdom","population":61113205,"type":"country","id":"country.152"}]],"attribution":{"mapbox-places":"<a href='http://mapbox.com/about/maps' target='_blank'>Terms & Feedback</a>"}}
 		var city = response.results[0][0].name;
-		place.val(city);
+		place.typeahead('setQuery', city);
 		
 		app.location = {
 			name: city,
