@@ -21,8 +21,15 @@ if (!res || !res[1]){
 		
 		var tutorName = $('#tutor-name'),
 			tutorSubject = $('#tutor-subject'),
-			tutorLocationName = $('#tutor-location-name');
-		
+			tutorLocationName = $('#tutor-location-name'),
+			tutorContact = $('#tutor-contact');
+
+		tutorContact.attr('href', app.mailto({
+			email: tutor.email,
+			subject: "I'd like to learn " + tutor.subject,
+			body: "Hi, I'm looking to learn " + tutor.subject + " and I found your profile on tutorwire.com"
+		})) 
+
 		app.type(
 			tutor.subject,
 			function (txt) {
