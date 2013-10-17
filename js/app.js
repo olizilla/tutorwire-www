@@ -166,6 +166,10 @@ var app = {
 				}
 			}
 		}, 100);
+	},
+
+	mailto: function(opts){
+		return 'mailto:' + opts.email + "?subject=" + opts.subject.replace(/ /g, '%20') + '&body=' + opts.body.replace(/ /g, '%20')
 	}
 };
 
