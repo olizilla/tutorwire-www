@@ -50,13 +50,13 @@ L.AwesomeMarkers.Icon = L.Icon.extend({
 
   _createInner: function() {
     var iconClass;
-    if(this.options.icon.slice(0,5)==="icon-"){
+    if(this.options.icon.slice(0,10)==="glyphicon-"){
       iconClass=this.options.icon;
     }else{
-      iconClass="icon-"+this.options.icon;
+      iconClass="glyphicon-"+this.options.icon;
     }
-    return "<i class='" + iconClass 
-    + (this.options.spin ? " icon-spin" :"") 
+    return "<i class='glyphicon " + iconClass
+    + (this.options.spin ? " glyphicon-spin" :"")
     + (this.options.iconColor ? " icon-" + this.options.iconColor :"") + "'></i>";
   },
 
