@@ -24,12 +24,11 @@ module.exports = function(grunt) {
 
 		copy:{
 			main:{
-				files:[{
-						expand:true,
-						src: ['css/**/*', 'js/vendor/**/*', 'img/**'],
-						dest: '_dist/assets'
-					}]
-				}
+				files:[
+					{expand:true, src: ['css/**/*', 'js/vendor/**/*', 'img/**'], dest: '_dist/assets'},
+					{expand:true, cwd: 'img', src: 'favicon.ico', dest: '_dist/'}
+				]
+			}
 		},
 
 		browserify: {
