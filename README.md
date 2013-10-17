@@ -1,4 +1,4 @@
-Tutor Wire - Frontend [![Dependency Status](https://david-dm.org/olizilla/tutorwire-www.png)](https://david-dm.org/olizilla/tutorwire-www) [![devDependency Status](https://david-dm.org/olizilla/tutorwire-www/dev-status.png)](https://david-dm.org/olizilla/tutorwire-www#info=devDependencies)
+Tutor Wire - Frontend [![Dependency Status](https://david-dm.org/tableflip/tutorwire-www.png)](https://david-dm.org/tableflip/tutorwire-www) [![devDependency Status](https://david-dm.org/tableflip/tutorwire-www/dev-status.png)](https://david-dm.org/tableflip/tutorwire-www#info=devDependencies)
 =========================
 
 **An experiment in build time compilation of static html, with all the moving parts and dynamism powered by JS after page load**
