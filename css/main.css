@@ -66,9 +66,6 @@ label{
 	top:0;
 	left:0;
 }
-.leaflet-control-zoom{
-	display: none;
-}
 .overlay{
 	position: absolute;
 	top:30px;

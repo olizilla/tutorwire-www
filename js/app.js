@@ -20,6 +20,7 @@ var app = {
 			minZoom: 6
 		});
 
+		map.zoomControl.setPosition('topright');
 		map.setView([55, -6], 6);
 
 		return map;
