@@ -85,17 +85,16 @@ var app = {
 		console.log('Showing tutors on map', tutors);
 		for (var i = 0; i < tutors.length; i++) {
 			
-			var tutor = tutors[i];
+			var tutor = tutors[i],
+				icon = new L.Icon.Default;
 			
-			var icon = new L.Icon.Default;
-			
-			if (tutor.photo.url){
+			if (tutor.photo && tutor.photo.url) {
 				icon = L.icon({
 					className: 'photo-icon',
 					iconUrl: tutor.photo.url,
 					iconSize: [50, 50],
-					popupAnchor: [4, -25],
-				})
+					popupAnchor: [4, -25]
+				});
 			}
 			
 			var marker = L.marker(tutor.location.coords, {

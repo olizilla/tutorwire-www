@@ -52,11 +52,14 @@ if (!res || !res[1]){
 				)
 			}
 		)
-		
-		if (tutor.photo){
-			var img = $('<img>').attr('src', tutor.photo.url);
-			$('#photoDropTarget').append(img);
+
+		var img = $('<img>').attr('src', "http://www.gravatar.com/avatar?s=400&d=mm");
+
+		if (tutor.photo) {
+			img.attr('src', tutor.photo.url);
 		}
+
+		$('#photoDropTarget').append(img);
 	
 		var latlng = new L.LatLng(
 			(tutor.location.coords.lat.toFixed(5))/1, 
