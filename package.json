@@ -8,7 +8,7 @@
     "start": "node index.js",
     "predeploy": "grunt"
   },
-  "repository": "https://github.com/olizilla/tutorwire-www",
+  "repository": "https://github.com/tableflip/tutorwire-www.git",
   "author": "olizilla",
   "license": "BSD",
   "devDependencies": {
