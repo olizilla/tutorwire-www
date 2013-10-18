@@ -3,9 +3,12 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 
+		pkg: grunt.file.readJSON('package.json'),
+
 		// Create the html files from page layouts and partial html fragments
 		assemble:{
 			options: {
+				pkg: '<%= pkg %>',
 				assets: '_dist/assets',
 				layout:'html/layout.h5bp.hbs',
 				partials: 'html/partials/*.hbs',
@@ -38,7 +41,7 @@ module.exports = function(grunt) {
 			},
 			watch: {
 				options: {transform: ['brfs']},
-				files: {'_dist/assets/js/bundle.js': 'js/main.js'}
+				files: {'_dist/assets/js/bundle-<%=pkg.version%>.js': 'js/main.js'}
 			}
 		},
 
