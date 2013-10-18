@@ -1,6 +1,6 @@
 {
   "name": "tutorwire-www",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Web front-end for finding tutors, fast.",
   "main": "index.js",
   "scripts": {
