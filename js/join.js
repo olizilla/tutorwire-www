@@ -88,7 +88,12 @@ map.on('locationfound', function (event) {
 map.locate();
 
 
-$('form').submit(addTutor);
+$('form').validationEngine('attach', {
+	onValidationComplete: function(form, valid){
+		if (!valid) return;
+		addTutor();
+	}
+});
 
 addPhotoDropTarget();
 
@@ -118,9 +123,7 @@ function addPhotoDropTarget(){
 	});
 }
 
-function addTutor(event){
-
-	event.preventDefault();
+function addTutor () {
 
 	var reqData = {
 		photo: app.photo,

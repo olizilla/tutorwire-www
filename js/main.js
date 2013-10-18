@@ -1,5 +1,7 @@
 require("./vendor/leaflet.awesome-markers")
 require("./vendor/typeahead")
+require("./vendor/jquery.validationEngine")
+require("./vendor/jquery.validationEngine-en")
 
 $('body.home').each(function () { require("./home") })
 $('body.join').each(function () { require("./join") })
